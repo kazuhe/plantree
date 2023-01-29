@@ -1,15 +1,12 @@
 {
-    "java.project.sourcePaths": [
-        "src"
-    ],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ],
-    "editor.formatOnSave": true,
-    "java.format.settings.url": ".vscode/java-formatter.xml",
-    "[java]": {
-        "editor.tabSize": 2,
-        "editor.detectIndentation": true
-    }
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "editor.defaultFormatter": null,
+  "editor.formatOnSave": true,
+  "java.format.settings.url": ".vscode/java-formatter.xml",
+  "[java]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": true
+  }
 }
