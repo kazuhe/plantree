@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   workspace:
-    container_name: workspace
+    container_name: plantree-workspace
     env_file: .env
     build:
       context: .
@@ -15,5 +15,6 @@ services:
       - type: bind
         source: .
         target: /home/${USER_NAME}/workspace
+    working_dir: /home/${USER_NAME}/workspace
     ports:
-      - 5555:5555
+      - 8080:8080

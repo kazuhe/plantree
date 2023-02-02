@@ -28,13 +28,13 @@ Docker Compose でワークスペースを起動する。
 docker compose up --detach --build
 ```
 
-ワークスペースへ接続する。
+ワークスペースへ接続して Gradle でプロジェクトをビルドし実行する。
 
 ```bash
 docker compose exec workspace /bin/bash
 su kazuhe
-cd ~/workspace
-java --version
+gradle build
+java -jar build/libs/plantree-0.0.1-SNAPSHOT.jar # http://localhost:8080/
 ```
 
 Docker Compose を停止する。
