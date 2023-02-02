@@ -33,8 +33,8 @@ docker compose up --detach --build
 ```bash
 docker compose exec workspace /bin/bash
 su kazuhe
-gradle build
-java -jar build/libs/plantree-0.0.1-SNAPSHOT.jar # http://localhost:8080/
+./gradlew build # アプリケーションをビルドする
+./gradlew bootRun # アプリケーションを実行する
 ```
 
 Docker Compose を停止する。

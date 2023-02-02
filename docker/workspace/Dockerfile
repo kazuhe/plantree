@@ -1,4 +1,4 @@
-FROM ubuntu:23.04
+FROM ubuntu:22.04
 
 ARG USER_NAME=default
 ARG USER_GROUP_NAME=workspace
@@ -14,7 +14,7 @@ RUN apt update \
   && echo %${USER_GROUP_NAME} ALL=\(ALL\) NOPASSWD:ALL > /etc/sudoers.d/${USER_GROUP_NAME} \
   && chmod 0440 /etc/sudoers.d/${USER_GROUP_NAME}
 
-ARG JAVA_VERSION=17.0.5-oracle
+ARG JAVA_VERSION=17.0.5-ms
 ARG GRADLE_VERSION=7.5
 
 RUN su ${USER_NAME} --command \
