@@ -8,5 +8,6 @@
   "[java]": {
     "editor.tabSize": 2,
     "editor.detectIndentation": true
-  }
+  },
+  "java.compile.nullAnalysis.mode": "automatic"
 }
