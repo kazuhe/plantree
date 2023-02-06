@@ -36,7 +36,7 @@ docker compose up --detach --build
 ```bash
 docker compose exec workspace /bin/bash
 su kazuhe
-./gradlew build # アプリケーションをビルドする
+./gradlew build --continuous & # バックグラウンドかつホットリロードの状態でビルドする
 ./gradlew bootRun # アプリケーションを実行する
 ```
 
