@@ -4,14 +4,17 @@
 
 ```bash
 .
-├── lib # 依存ライブラリ
+├── README.md
+├── build
+├── build.gradle
+├── docker
+├── docker-compose.yml
+├── gradle
+├── gradlew
+├── gradlew.bat
+├── settings.gradle
 └── src # ソースコード
-    └── App.java # エントリーポイント
 ```
-
-コンパイルを実行すると `bin` ディレクトリに実行ファイルが生成される。
-
-また、ディレクトリ構成は `.vscode/settings.json` で設定している。
 
 ## Development
 
@@ -33,9 +36,12 @@ docker compose up --detach --build
 ```bash
 docker compose exec workspace /bin/bash
 su kazuhe
-./gradlew build # アプリケーションをビルドする
+./gradlew build --continuous & # バックグラウンドかつホットリロードの状態でビルドする
 ./gradlew bootRun # アプリケーションを実行する
 ```
+
+bootRun すると Swagger UI が起動する。
+<http://localhost:8080/swagger-ui/index.html>
 
 Docker Compose を停止する。
 
