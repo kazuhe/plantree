@@ -3,14 +3,18 @@ package x.plantree.controllers;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,8 +36,13 @@ public class NodeController {
    * @param id Node ID
    * @return Node
    */
-  private Node getNodeById(int id) {
-    return nodeItems.stream().filter(item -> item.getId() == id).findAny().orElse(null);
+  private Node findNodeById(int id) {
+    Optional<Node> result = nodeItems.stream().filter(item -> item.getId() == id).findAny();
+    if (!result.isPresent()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
+    }
+
+    return result.get();
   }
 
   /**
@@ -41,7 +50,7 @@ public class NodeController {
    * 
    * @return Node 一覧
    */
-  @RequestMapping(method = RequestMethod.GET, path = "")
+  @GetMapping(path = "")
   public List<Node> getNodeItems() {
     return nodeItems;
   }
@@ -52,14 +61,9 @@ public class NodeController {
    * @param id Node ID
    * @return Node
    */
-  @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+  @GetMapping(path = "/{id}")
   public Node getNodeItem(@PathVariable int id) {
-    Node result = getNodeById(id);
-    if (result == null) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
-    }
-
-    return result;
+    return findNodeById(id);
   }
 
   /**
@@ -68,12 +72,12 @@ public class NodeController {
    * @param newNode 新しい Node
    * @return 作成された Node
    */
-  @RequestMapping(method = RequestMethod.POST, path = "")
+  @PostMapping(path = "")
   public ResponseEntity<Node> createNodeItem(@RequestBody Node newNode) {
     newNode.setId(counter.incrementAndGet());
     nodeItems.add(newNode);
-    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newNode.getId())
-        .toUri();
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        .buildAndExpand(newNode.getId()).toUri();
     return ResponseEntity.created(location).body(newNode);
   }
 
@@ -83,13 +87,9 @@ public class NodeController {
    * @param newNode 新しい Node
    * @param id      新しい Node ID
    */
-  @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+  @PutMapping(path = "/{id}")
   public ResponseEntity<?> updateNodeItem(@RequestBody Node newNode, @PathVariable int id) {
-    Node result = getNodeById(id);
-    if (result == null) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
-    }
-
+    Node result = findNodeById(id);
     nodeItems.remove(result);
     nodeItems.add(newNode);
 
@@ -101,12 +101,9 @@ public class NodeController {
    * 
    * @param id Node ID
    */
-  @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+  @DeleteMapping(path = "/{id}")
   public ResponseEntity<?> removeNodeItem(@PathVariable int id) {
-    Node result = getNodeById(id);
-    if (result == null) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
-    }
+    Node result = findNodeById(id);
     nodeItems.remove(result);
 
     return ResponseEntity.noContent().build();
