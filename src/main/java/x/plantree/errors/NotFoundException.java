@@ -1,28 +1,18 @@
 package x.plantree.errors;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * リソースが発見できないリクエストに対する例外
  */
-public class NotFoundException extends RuntimeException {
+public class NotFoundException extends HttpException {
 
   public NotFoundException() {
+    super(HttpStatus.NOT_FOUND);
   }
 
   public NotFoundException(String message) {
-    super(message);
-  }
-
-  public NotFoundException(Throwable cause) {
-    super(cause);
-  }
-
-  public NotFoundException(String message, Throwable cause) {
-    super(message, cause);
-  }
-
-  public NotFoundException(String message, Throwable cause, boolean enableSuppression,
-      boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
+    super(message, HttpStatus.NOT_FOUND);
   }
 
 }
