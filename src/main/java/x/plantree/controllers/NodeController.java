@@ -21,6 +21,7 @@ import x.plantree.services.NodeService;
 @RestController
 @RequestMapping(path = NodeController.BASE_URL)
 public class NodeController {
+
   public static final String BASE_URL = "/api/v1/nodes";
 
   @Autowired
@@ -70,7 +71,7 @@ public class NodeController {
    * @param id      新しい Node ID
    */
   @PutMapping(path = "/{id}")
-  public ResponseEntity<?> updateNode(@RequestBody Node newNode, @PathVariable int id) {
+  public ResponseEntity<Object> updateNode(@RequestBody Node newNode, @PathVariable int id) {
     nodeService.updateNode(id, newNode);
     return ResponseEntity.noContent().build();
   }
@@ -81,8 +82,9 @@ public class NodeController {
    * @param id Node ID
    */
   @DeleteMapping(path = "/{id}")
-  public ResponseEntity<?> removeNodeItem(@PathVariable int id) {
+  public ResponseEntity<Object> removeNodeItem(@PathVariable int id) {
     nodeService.deleteNode(id);
     return ResponseEntity.noContent().build();
   }
+
 }

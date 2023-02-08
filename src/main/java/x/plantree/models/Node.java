@@ -1,7 +1,12 @@
 package x.plantree.models;
 
+/**
+ * Tree の Node
+ */
 public class Node {
+
   private int id;
+
   private String title;
 
   public Node(int id, String title) {

@@ -2,13 +2,14 @@ package x.plantree.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import x.plantree.errors.BadRequestException;
+import x.plantree.errors.NotFoundException;
 import x.plantree.models.Node;
 
 @Service
@@ -27,7 +28,7 @@ public class NodeServiceImpl implements NodeService {
   private Node findNodeById(int id) {
     Optional<Node> result = nodeList.stream().filter(item -> item.getId() == id).findAny();
     if (!result.isPresent()) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
+      throw new NotFoundException("Node is not available.");
     }
 
     return result.get();
@@ -35,6 +36,9 @@ public class NodeServiceImpl implements NodeService {
 
   @Override
   public Node saveNode(Node node) {
+    if (Objects.isNull(node.getTitle())) {
+      throw new BadRequestException("Title must not be null.");
+    }
     node.setId(counter.incrementAndGet());
     nodeList.add(node);
 
