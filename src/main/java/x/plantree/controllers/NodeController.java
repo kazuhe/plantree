@@ -21,6 +21,7 @@ import x.plantree.services.NodeService;
 @RestController
 @RequestMapping(path = NodeController.BASE_URL)
 public class NodeController {
+
   public static final String BASE_URL = "/api/v1/nodes";
 
   @Autowired
@@ -85,4 +86,5 @@ public class NodeController {
     nodeService.deleteNode(id);
     return ResponseEntity.noContent().build();
   }
+
 }
