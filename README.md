@@ -18,13 +18,6 @@
 
 ## Development
 
-プロジェクトのルートに `.env` ファイルを作成し、任意の `USER_NAME` と `USER_GROUP_NAME` を設定することができる。
-
-```bash
-USER_NAME=kazuhe # 特に設定しない場合 default となる
-USER_GROUP_NAME=workspace # 特に設定しない場合 workspace となる
-```
-
 Docker Compose でワークスペースを起動する。
 
 ```bash
@@ -35,7 +28,7 @@ docker compose up --detach --build
 
 ```bash
 docker compose exec workspace /bin/bash
-su kazuhe
+su devuser
 ./gradlew build --continuous & # バックグラウンドかつホットリロードの状態でビルドする
 ./gradlew bootRun # アプリケーションを実行する
 ```

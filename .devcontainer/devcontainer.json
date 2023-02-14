@@ -1,11 +1,11 @@
 {
-	"name": "dev-container",
+	"name": "plantree-dev-container",
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
 	"service": "workspace",
-	"remoteUser": "kazuhe",
-	"workspaceFolder": "/home/kazuhe/workspace",
+	"remoteUser": "devuser",
+	"workspaceFolder": "/home/devuser/workspace",
 	"customizations": {
 		"vscode": {
 			"extensions": [
