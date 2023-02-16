@@ -18,7 +18,9 @@
 
 ## Development
 
-Docker Compose でワークスペースを起動する。
+VS Code 拡張機能の [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) を利用することを推奨する。
+
+Docker Compose でワークスペースを起動することもできる。
 
 ```bash
 docker compose up --detach --build

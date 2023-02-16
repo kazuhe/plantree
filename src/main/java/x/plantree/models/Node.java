@@ -1,5 +1,7 @@
 package x.plantree.models;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * Tree の Node
  */
@@ -7,6 +9,7 @@ public class Node {
 
   private int id;
 
+  @NotBlank(message = "Title must not be blank.")
   private String title;
 
   public Node(int id, String title) {

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.validation.Valid;
+
 import x.plantree.models.Node;
 import x.plantree.services.NodeService;
 
@@ -34,7 +36,7 @@ public class NodeController {
    * @return 作成された Node
    */
   @PostMapping(path = "")
-  public ResponseEntity<Node> createNode(@RequestBody Node newNode) {
+  public ResponseEntity<Node> createNode(@Valid @RequestBody Node newNode) {
     Node savedNode = nodeService.saveNode(newNode);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(savedNode.getId()).toUri();
