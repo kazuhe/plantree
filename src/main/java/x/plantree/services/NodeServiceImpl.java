@@ -2,13 +2,11 @@ package x.plantree.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
-import x.plantree.errors.BadRequestException;
 import x.plantree.errors.NotFoundException;
 import x.plantree.models.Node;
 
@@ -36,9 +34,6 @@ public class NodeServiceImpl implements NodeService {
 
   @Override
   public Node saveNode(Node node) {
-    if (Objects.isNull(node.getTitle())) {
-      throw new BadRequestException("Title must not be null.");
-    }
     node.setId(counter.incrementAndGet());
     nodeList.add(node);
 

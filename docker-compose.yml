@@ -3,18 +3,17 @@ version: "3.9"
 services:
   workspace:
     container_name: plantree-workspace
-    env_file: .env
     build:
       context: .
       dockerfile: docker/workspace/Dockerfile
       args:
-        USER_NAME: ${USER_NAME}
-        USER_GROUP_NAME: ${USER_GROUP_NAME}
+        USER_NAME: devuser
+        USER_GROUP_NAME: workspace
     tty: true
     volumes:
       - type: bind
         source: .
-        target: /home/${USER_NAME}/workspace
-    working_dir: /home/${USER_NAME}/workspace
+        target: /home/devuser/workspace
+    working_dir: /home/devuser/workspace
     ports:
       - 8080:8080

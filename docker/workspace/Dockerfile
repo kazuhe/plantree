@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG USER_NAME=default
+ARG USER_NAME=devuser
 ARG USER_GROUP_NAME=workspace
 
 ARG PKG="git vim curl unzip zip sudo"
