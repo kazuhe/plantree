@@ -1,30 +1,36 @@
 package x.plantree.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import x.plantree.errors.NotFoundException;
 import x.plantree.models.Node;
+import x.plantree.repositories.NodeRepository;
 
 @Service
+@Primary
 public class NodeServiceImpl implements NodeService {
 
-  private final AtomicInteger counter = new AtomicInteger();
+  @Autowired
+  private NodeRepository nodeRepository;
 
-  private List<Node> nodeList = new ArrayList<>();
+  @Override
+  public Node saveNode(Node node) {
+    return nodeRepository.save(node);
+  }
 
-  /**
-   * ID を用いてインメモリオブジェクトから Node を取得する
-   * 
-   * @param id Node ID
-   * @return Node
-   */
-  private Node findNodeById(int id) {
-    Optional<Node> result = nodeList.stream().filter(item -> item.getId() == id).findAny();
+  @Override
+  public List<Node> getNodeList() {
+    return nodeRepository.findAll();
+  }
+
+  @Override
+  public Node getNodeById(int id) {
+    Optional<Node> result = nodeRepository.findById(id);
     if (!result.isPresent()) {
       throw new NotFoundException("Node is not available.");
     }
@@ -33,36 +39,13 @@ public class NodeServiceImpl implements NodeService {
   }
 
   @Override
-  public Node saveNode(Node node) {
-    node.setId(counter.incrementAndGet());
-    nodeList.add(node);
-
-    return node;
-  }
-
-  @Override
-  public List<Node> getNodeList() {
-    return nodeList;
-  }
-
-  @Override
-  public Node getNodeById(int id) {
-    return findNodeById(id);
-  }
-
-  @Override
   public Node updateNode(int id, Node node) {
-    Node result = findNodeById(id);
-    nodeList.remove(result);
-    nodeList.add(node);
-
-    return node;
+    return nodeRepository.save(node);
   }
 
   @Override
   public void deleteNode(int id) {
-    Node result = findNodeById(id);
-    nodeList.remove(result);
+    nodeRepository.deleteById(id);
   }
 
 }

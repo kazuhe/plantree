@@ -3,17 +3,13 @@
 ## Directory structure
 
 ```bash
-.
-├── README.md
-├── build
-├── build.gradle
-├── docker
-├── docker-compose.yml
-├── gradle
-├── gradlew
-├── gradlew.bat
-├── settings.gradle
-└── src # ソースコード
+src/main/java/x/plantree
+├── PlantreeApplication.java
+├── controllers
+├── errors
+├── models
+├── repositories # データ永続化処理の抽象化
+└── services # ビジネスロジック
 ```
 
 ## Development

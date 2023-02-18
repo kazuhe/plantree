@@ -36,5 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
-# Environment variable
+### Environment variable ###
 .env
+
+### Docker ###
+.docker
