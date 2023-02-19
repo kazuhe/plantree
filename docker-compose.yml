@@ -20,31 +20,23 @@ services:
 
   db:
     container_name: plantree-db
-    image: postgres:10
-    environment:
-      POSTGRES_USER: dbuser
-      POSTGRES_PASSWORD: dbpass
-      POSTGRES_DB: dev
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
     volumes:
+      - type: volume
+        source: plantree-db-volume
+        target: /var/lib/mysql
       - type: bind
-        source: ./.docker/postgres
-        target: /var/lib/postgresql/data/
+        source: ./docker/db/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+      MYSQL_DATABASE: dev
     ports:
-      - 5432:5432
-    restart: always
+      - 3306:3306
 
-  dbadmin:
-    container_name: plantree-dbadmin
-    image: dpage/pgadmin4:6.12
-    environment:
-      PGADMIN_DEFAULT_EMAIL: dbadmin@example.com
-      PGADMIN_DEFAULT_PASSWORD: dbadmin-pass
-    volumes:
-      - type: bind
-        source: ./.docker/pgadmin4
-        target: /var/lib/pgadmin
-    ports:
-      - 8888:80
-    restart: always
-    depends_on:
-      - postgres
+volumes:
+  plantree-db-volume:
