@@ -1,13 +1,13 @@
 spring:
-  jpa:
-    database: POSTGRESQL
-    hibernate:
+  # jpa:
+  #   database: POSTGRESQL
+  #   hibernate:
       # SQL を自動で実行してテーブルを生成する
-      ddl-auto: update
-      show-sql: true
+      # ddl-auto: update
+      # show-sql: true
 
   datasource:
-    url: jdbc:postgresql://db:5432/dev
+    url: jdbc:mysql://db:3306/dev
     username: dbuser
     password: dbpass
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
