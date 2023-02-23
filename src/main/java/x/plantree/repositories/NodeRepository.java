@@ -17,6 +17,19 @@ public class NodeRepository {
   @Autowired
   JdbcTemplate jdbcTemplate;
 
+  /**
+   * データベースに Node を登録する
+   */
+  public Node save(Node node) {
+    String sql = "INSERT INTO nodes VALUES (?, ?)";
+    jdbcTemplate.update(sql, node.getId(), node.getTitle());
+
+    return node;
+  }
+
+  /**
+   * データベースから全ての Node を取得する
+   */
   public List<Node> findAll() {
     String sql = "SELECT * FROM nodes";
     SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
@@ -28,34 +41,31 @@ public class NodeRepository {
     return list;
   }
 
-  // ↓WIP
-
-  private List<Node> nodeList = new ArrayList<>();
-
   /**
-   * ID を用いてインメモリオブジェクトから Node を取得する
-   * 
-   * @param id Node ID
-   * @return Node
+   * データベースから特定の Node を取得する
    */
-  private Node findNodeById(int id) {
-    Optional<Node> result = nodeList.stream().filter(item -> item.getId() == id).findAny();
-
-    return result.get();
-  }
-
-  public Node save(Node node) {
-    nodeList.add(node);
-
+  public Optional<Node> findById(int id) {
+    String sql = "SELECT * FROM nodes WHERE id = ?";
+    SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
+    Optional<Node> node = Optional.of(new Node(rs.getInt("id"), rs.getString("title")));
     return node;
   }
 
-  public Optional<Node> findById(int id) {
-    return nodeList.stream().filter(item -> item.getId() == id).findAny();
+  /**
+   * データベースの特定の Node を更新する
+   */
+  public Node updateById(int id, Node node) {
+    String sql = "UPDATE nodes SET title = ? WHERE id = ?";
+    jdbcTemplate.update(sql, node.getTitle(), id);
+    return node;
   }
 
+  /**
+   * データベースから特定の Node を削除する
+   */
   public void deleteById(int id) {
-    Node result = findNodeById(id);
-    nodeList.remove(result);
+    String sql = "DELETE FROM nodes WHERE id = ?";
+    jdbcTemplate.update(sql, id);
   }
+
 }

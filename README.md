@@ -39,3 +39,10 @@ Docker Compose を停止する。
 ```bash
 docker compose down
 ```
+
+```bash
+# MySQL に接続する
+$ docker compose exec db /bin/bash
+$ mysql -u dbuser -p
+mysql> USE dev;
+```

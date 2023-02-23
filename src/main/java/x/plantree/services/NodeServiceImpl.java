@@ -40,7 +40,7 @@ public class NodeServiceImpl implements NodeService {
 
   @Override
   public Node updateNode(int id, Node node) {
-    return nodeRepository.save(node);
+    return nodeRepository.updateById(id, node);
   }
 
   @Override
