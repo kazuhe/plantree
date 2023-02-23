@@ -38,6 +38,3 @@ out/
 
 ### Environment variable ###
 .env
-
-### Docker ###
-.docker

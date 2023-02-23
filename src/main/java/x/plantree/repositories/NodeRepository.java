@@ -2,7 +2,7 @@ package x.plantree.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,10 +44,12 @@ public class NodeRepository {
   /**
    * データベースから特定の Node を取得する
    */
-  public Optional<Node> findById(int id) {
+  public Node findById(int id) {
     String sql = "SELECT * FROM nodes WHERE id = ?";
-    SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
-    Optional<Node> node = Optional.of(new Node(rs.getInt("id"), rs.getString("title")));
+    Map<String, Object> map = jdbcTemplate.queryForMap(sql, id);
+    Node node = new Node();
+    node.setId((int) map.get("id"));
+    node.setTitle((String) map.get("title"));
     return node;
   }
 

@@ -1,13 +1,11 @@
 package x.plantree.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import x.plantree.errors.NotFoundException;
 import x.plantree.models.Node;
 import x.plantree.repositories.NodeRepository;
 
@@ -30,12 +28,7 @@ public class NodeServiceImpl implements NodeService {
 
   @Override
   public Node getNodeById(int id) {
-    Optional<Node> result = nodeRepository.findById(id);
-    if (!result.isPresent()) {
-      throw new NotFoundException("Node is not available.");
-    }
-
-    return result.get();
+    return nodeRepository.findById(id);
   }
 
   @Override
