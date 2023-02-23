@@ -1,17 +1,12 @@
 {
-	"name": "plantree-dev-container",
-	"dockerComposeFile": [
-		"../docker-compose.yml"
-	],
-	"service": "workspace",
-	"remoteUser": "devuser",
-	"workspaceFolder": "/home/devuser/workspace",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"vscjava.vscode-java-pack",
-				"vscjava.vscode-gradle"
-			]
-		}
-	}
+  "name": "plantree-dev-container",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "workspace",
+  "remoteUser": "devuser",
+  "workspaceFolder": "/home/devuser/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack", "vscjava.vscode-gradle"]
+    }
+  }
 }

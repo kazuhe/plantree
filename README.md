@@ -3,17 +3,13 @@
 ## Directory structure
 
 ```bash
-.
-├── README.md
-├── build
-├── build.gradle
-├── docker
-├── docker-compose.yml
-├── gradle
-├── gradlew
-├── gradlew.bat
-├── settings.gradle
-└── src # ソースコード
+src/main/java/x/plantree
+├── PlantreeApplication.java
+├── controllers
+├── errors
+├── models
+├── repositories # データ永続化処理の抽象化
+└── services # ビジネスロジック
 ```
 
 ## Development
@@ -42,4 +38,11 @@ Docker Compose を停止する。
 
 ```bash
 docker compose down
+```
+
+```bash
+# MySQL に接続する
+$ docker compose exec db /bin/bash
+$ mysql -u dbuser -p
+mysql> USE dev;
 ```

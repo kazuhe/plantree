@@ -17,6 +17,9 @@ public class Node {
     this.title = title;
   }
 
+  public Node() {
+  }
+
   public int getId() {
     return id;
   }
