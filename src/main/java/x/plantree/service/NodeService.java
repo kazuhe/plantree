@@ -1,12 +1,12 @@
-package x.plantree.services;
+package x.plantree.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import x.plantree.domain.entities.Node;
-import x.plantree.domain.repositories.NodeRepository;
+import x.plantree.domain.entity.Node;
+import x.plantree.domain.repository.NodeRepository;
 
 @Service
 public class NodeService {

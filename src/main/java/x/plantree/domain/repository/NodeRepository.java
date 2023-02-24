@@ -1,8 +1,8 @@
-package x.plantree.domain.repositories;
+package x.plantree.domain.repository;
 
 import java.util.List;
 
-import x.plantree.domain.entities.Node;
+import x.plantree.domain.entity.Node;
 
 public interface NodeRepository {
 

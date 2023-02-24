@@ -1,4 +1,4 @@
-package x.plantree.domain.entities;
+package x.plantree.domain.entity;
 
 import jakarta.validation.constraints.NotBlank;
 

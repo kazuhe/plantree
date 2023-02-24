@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import x.plantree.domain.entities.Node;
-import x.plantree.domain.repositories.NodeRepository;
+import x.plantree.domain.entity.Node;
+import x.plantree.domain.repository.NodeRepository;
 
 @Repository
 @Primary

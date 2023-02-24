@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Repository;
 
-import x.plantree.domain.entities.Node;
-import x.plantree.domain.repositories.NodeRepository;
+import x.plantree.domain.entity.Node;
+import x.plantree.domain.repository.NodeRepository;
 import x.plantree.errors.NotFoundException;
 
 @Repository
