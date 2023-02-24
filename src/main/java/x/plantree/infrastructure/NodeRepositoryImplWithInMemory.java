@@ -1,17 +1,18 @@
-package x.plantree.services;
+package x.plantree.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import x.plantree.errors.NotFoundException;
 import x.plantree.domain.entities.Node;
+import x.plantree.domain.repositories.NodeRepository;
+import x.plantree.errors.NotFoundException;
 
-@Service
-public class NodeServiceImplWithoutRepo implements NodeService_bk {
+@Repository
+public class NodeRepositoryImplWithInMemory implements NodeRepository {
 
   private final AtomicInteger counter = new AtomicInteger();
 
@@ -32,26 +33,38 @@ public class NodeServiceImplWithoutRepo implements NodeService_bk {
     return result.get();
   }
 
+  /**
+   * インメモリオブジェクトに Node を登録する
+   */
   @Override
-  public Node saveNode(Node node) {
+  public Node save(Node node) {
     node.setId(counter.incrementAndGet());
     nodeList.add(node);
 
     return node;
   }
 
+  /**
+   * インメモリオブジェクトから全ての Node を取得する
+   */
   @Override
-  public List<Node> getNodeList() {
+  public List<Node> findAll() {
     return nodeList;
   }
 
+  /**
+   * インメモリオブジェクトから特定の Node を取得する
+   */
   @Override
-  public Node getNodeById(int id) {
+  public Node findById(int id) {
     return findNodeById(id);
   }
 
+  /**
+   * インメモリオブジェクトの特定の Node を更新する
+   */
   @Override
-  public Node updateNode(int id, Node node) {
+  public Node updateById(int id, Node node) {
     Node result = findNodeById(id);
     nodeList.remove(result);
     nodeList.add(node);
@@ -59,8 +72,11 @@ public class NodeServiceImplWithoutRepo implements NodeService_bk {
     return node;
   }
 
+  /**
+   * インメモリオブジェクトから特定の Node を削除する
+   */
   @Override
-  public void deleteNode(int id) {
+  public void deleteById(int id) {
     Node result = findNodeById(id);
     nodeList.remove(result);
   }

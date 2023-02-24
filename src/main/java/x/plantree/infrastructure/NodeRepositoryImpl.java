@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import x.plantree.domain.entities.Node;
 import x.plantree.domain.repositories.NodeRepository;
 
 @Repository
+@Primary
 public class NodeRepositoryImpl implements NodeRepository {
 
   @Autowired
