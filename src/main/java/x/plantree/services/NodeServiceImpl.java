@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import x.plantree.models.Node;
+import x.plantree.domain.entities.Node;
 import x.plantree.repositories.NodeRepository;
 
 @Service

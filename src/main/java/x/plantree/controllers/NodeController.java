@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import x.plantree.models.Node;
+import x.plantree.domain.entities.Node;
 import x.plantree.services.NodeService;
 
 @RestController

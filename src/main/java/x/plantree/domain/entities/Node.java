@@ -1,10 +1,7 @@
-package x.plantree.models;
+package x.plantree.domain.entities;
 
 import jakarta.validation.constraints.NotBlank;
 
-/**
- * Tree の Node
- */
 public class Node {
 
   private int id;

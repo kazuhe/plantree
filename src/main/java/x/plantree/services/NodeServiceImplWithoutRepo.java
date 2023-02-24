@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.stereotype.Service;
 
 import x.plantree.errors.NotFoundException;
-import x.plantree.models.Node;
+import x.plantree.domain.entities.Node;
 
 @Service
 public class NodeServiceImplWithoutRepo implements NodeService {

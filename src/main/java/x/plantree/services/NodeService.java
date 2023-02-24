@@ -2,7 +2,7 @@ package x.plantree.services;
 
 import java.util.List;
 
-import x.plantree.models.Node;
+import x.plantree.domain.entities.Node;
 
 public interface NodeService {
   public Node saveNode(Node node);

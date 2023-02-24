@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import x.plantree.models.Node;
+import x.plantree.domain.entities.Node;
 
 @Repository
 public class NodeRepository {
