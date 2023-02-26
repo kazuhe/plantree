@@ -1,4 +1,4 @@
-package x.plantree.controllers;
+package x.plantree.ui;
 
 import java.net.URI;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import x.plantree.models.Node;
-import x.plantree.services.NodeService;
+import x.plantree.domain.entity.Node;
+import x.plantree.service.NodeService;
 
 @RestController
 @RequestMapping(path = NodeController.BASE_URL)

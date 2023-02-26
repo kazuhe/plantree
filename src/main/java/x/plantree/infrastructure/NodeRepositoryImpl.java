@@ -1,25 +1,29 @@
-package x.plantree.repositories;
+package x.plantree.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import x.plantree.models.Node;
+import x.plantree.domain.entity.Node;
+import x.plantree.domain.repository.NodeRepository;
 
 @Repository
-public class NodeRepository {
+@Primary
+public class NodeRepositoryImpl implements NodeRepository {
 
   @Autowired
-  JdbcTemplate jdbcTemplate;
+  private JdbcTemplate jdbcTemplate;
 
   /**
    * データベースに Node を登録する
    */
+  @Override
   public Node save(Node node) {
     String sql = "INSERT INTO nodes VALUES (?, ?)";
     jdbcTemplate.update(sql, node.getId(), node.getTitle());
@@ -30,6 +34,7 @@ public class NodeRepository {
   /**
    * データベースから全ての Node を取得する
    */
+  @Override
   public List<Node> findAll() {
     String sql = "SELECT * FROM nodes";
     SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
@@ -44,6 +49,7 @@ public class NodeRepository {
   /**
    * データベースから特定の Node を取得する
    */
+  @Override
   public Node findById(int id) {
     String sql = "SELECT * FROM nodes WHERE id = ?";
     Map<String, Object> map = jdbcTemplate.queryForMap(sql, id);
@@ -56,6 +62,7 @@ public class NodeRepository {
   /**
    * データベースの特定の Node を更新する
    */
+  @Override
   public Node updateById(int id, Node node) {
     String sql = "UPDATE nodes SET title = ? WHERE id = ?";
     jdbcTemplate.update(sql, node.getTitle(), id);
@@ -65,6 +72,7 @@ public class NodeRepository {
   /**
    * データベースから特定の Node を削除する
    */
+  @Override
   public void deleteById(int id) {
     String sql = "DELETE FROM nodes WHERE id = ?";
     jdbcTemplate.update(sql, id);
