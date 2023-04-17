@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class PlantreeApplication
 
 fun main(args: Array<String>) {
-	runApplication<PlantreeApplication>(*args)
+    runApplication<PlantreeApplication>(*args)
 }
