@@ -20,7 +20,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
+//    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
