@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  # MySQL
+  db:
+    container_name: plantree-db
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+    volumes:
+      - type: volume
+        source: plantree-db-volume
+        target: /var/lib/mysql
+      - type: bind
+        source: ./docker/db/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+
+  # Redis
+#  redis:
+#    image: "redis:latest"
+#    platform: linux/amd64
+#    ports:
+#      - "6379:6379"
+#    volumes:
+#      - "./redis:/data"
+
+volumes:
+  plantree-db-volume:
